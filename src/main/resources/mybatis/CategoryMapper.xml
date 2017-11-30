@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bingoogolapple.sbn.repository.CategoryRepository">
+
+    <resultMap id="categoryMap" type="Category">
+        <id property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="name" column="NAME" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <select id="findCategoryList" resultMap="categoryMap">
+        SELECT c.ID, c.NAME
+        FROM t_category c
+    </select>
+</mapper>

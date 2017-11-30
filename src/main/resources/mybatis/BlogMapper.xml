@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bingoogolapple.sbn.repository.BlogRepository">
+
+    <resultMap id="blogMap" type="Blog">
+        <id property="id" column="ID" jdbcType="INTEGER"/>
+        <result property="title" column="TITLE" jdbcType="VARCHAR"/>
+        <result property="content" column="CONTENT" jdbcType="VARCHAR"/>
+        <result property="categoryId" column="CATEGORY_ID" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <select id="findBlogList" resultMap="blogMap">
+        SELECT b.ID, b.TITLE, b.CONTENT, b.CATEGORY_ID
+        FROM t_blog b
+        <where>
+            <if test="keyword != null and keyword != ''">
+                b.TITLE LIKE CONCAT('%', #{keyword}, '%')
+                OR b.CONTENT LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+        </where>
+    </select>
+</mapper>
