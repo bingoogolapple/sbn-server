@@ -85,4 +85,16 @@ public class FileController {
             return ResponseEntity.notFound().build();
         }
     }
+
+    @ApiOperation(value = "测试返回的 data 字段为字符串")
+    @GetMapping("stringData")
+    public ResultDto stringData() {
+        return ResultDto.data("返回的 data 字段为字符串");
+    }
+
+    @ApiOperation(value = "测试返回的数据为字符串")
+    @GetMapping("string")
+    public String string() {
+        return "返回的数据为字符串";
+    }
 }
